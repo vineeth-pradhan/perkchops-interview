@@ -2,16 +2,13 @@ import React from 'react';
 import './App.css';
 
 class Product extends React.Component {
-  constructor(props){
-    super(props);
-    console.log(props.product)
-  }
-
   render() {
     return(
+      <div id='product-container'>
       <div id='product' className='row mt-5'>
+        <hr />
         <div id='product-image' className='col-lg-3'>
-          {this.props.product.image ? <img src={this.props.product.image} width='200px'/> : <img src='food-cartoon.jpg' width='200px' />}
+          {this.props.product.image ? <img alt={this.props.product.name} src={this.props.product.image} width='200px'/> : <img src='food-cartoon.jpg' alt='default' width='200px' />}
         </div>
         <div id='product-details' className='col-lg-9'>
           <div className='col-lg-12 row mt-2'>
@@ -34,6 +31,8 @@ class Product extends React.Component {
             </div>
           </div>
         </div>
+      </div>
+      <div id='hr'> <hr /> </div>
       </div>
     )
   }
