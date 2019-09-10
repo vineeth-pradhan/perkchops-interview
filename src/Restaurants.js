@@ -9,10 +9,15 @@ class Restaurants extends React.Component {
     localStorage.setItem('greeting', props.restaurants.greeting);
   }
 
+  compare(a, b){
+    if(a.restaurant.openStatus > 'closed')  return -1; 
+    return 0;
+  }
+
   render() {
     return (
-      <div className="restaurants">
-        { this.props.restaurants.products.map((product, i) => {
+      <div className="restaurants container">
+        { this.props.restaurants.products.sort(this.compare).map((product, i) => {
           return <Product key={i} product={product} />
         })}
       </div>
