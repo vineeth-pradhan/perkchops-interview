@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Restaurants from './Restaurants.js';
+import Restaurants from './Restaurants';
 const axios = require('axios');
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = { restaurants: null }
-    this.fetchRestaurants.bind(this);
+    this.state = { restaurants: null, greeting: null }
+    this.fetchRestaurants();
   }
 
   fetchRestaurants() {
@@ -18,18 +18,35 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Perkchops
-          </p>
-        </header>
-        <div className="restaurants-component">
-          <Restaurants restaurants={this.state.restaurants}/>
+    if(this.state.restaurants) {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <p>
+              Perkchops: { localStorage.getItem('greeting') ? localStorage.getItem('greeting') : '' }
+            </p>
+          </header>
+          <div className="restaurants-component">
+            <Restaurants restaurants={this.state.restaurants}/>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else{
+      return (
+        <div className="App">
+          <header className="App-header">
+            <p>
+              Perkchops
+            </p>
+          </header>
+          <div className="restaurants-component">
+            Unavailable
+          </div>
+        </div>
+      );
+    }
+
   }
 }
 
